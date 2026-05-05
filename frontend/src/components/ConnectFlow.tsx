@@ -15,7 +15,7 @@ interface ConnectFlowProps {
 }
 
 export const ConnectFlow = ({ onClose, onConnected, defaultGroup }: ConnectFlowProps) => {
-  const { groups: storeGroups, load: reloadStore } = useConnections()
+  const { groups: storeGroups } = useConnections()
   const [localGroups, setLocalGroups] = useState<string[]>([])
   const [dbGroups, setDbGroups] = useState<string[]>([])
   const [addingGroup, setAddingGroup] = useState(false)

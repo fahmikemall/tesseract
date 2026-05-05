@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { I } from '../ui/icons'
-import { StatusDot, Button, Tag } from '../ui/primitives'
+import { Button, Tag } from '../ui/primitives'
 import { useConnections } from '../store/connections'
 
 function getGreeting() {
@@ -18,15 +18,6 @@ function timeAgo(date: Date) {
   return `${Math.round(s / 60)}m ago`
 }
 
-const spark = (seed = 0) => {
-  const blocks = ['▁', '▂', '▃', '▄', '▅', '▆', '▇']
-  let v = 3 + (seed % 3)
-  return Array.from({ length: 28 }, (_, i) => {
-    v += (Math.sin(i * 0.7 + seed) + Math.cos(i * 1.3 + seed * 0.3)) * 0.8
-    v = Math.max(0, Math.min(6, v))
-    return blocks[Math.round(v)]
-  }).join('')
-}
 
 interface DashboardProps {
   onSelect: (id: string) => void
@@ -51,9 +42,6 @@ export const Dashboard = ({ onSelect, onNew }: DashboardProps) => {
     return () => clearInterval(id)
   }, [])
 
-  const handleRefresh = useCallback(async () => {
-    await refreshWithPing()
-  }, [refreshWithPing])
 
   const copySnippet = (cmd: string, name: string) => {
     navigator.clipboard.writeText(cmd).then(() => {

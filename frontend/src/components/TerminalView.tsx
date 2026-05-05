@@ -41,10 +41,6 @@ export const TerminalView = ({ host, sftpVisible, onToggleSftp, onSessionCountCh
     return { id: sessionId, sessionId, title: `${host.user}@${host.name}`, type: 'ssh' }
   }
 
-  const makeLocalTab = (): Tab => {
-    const sessionId = uuidv4()
-    return { id: sessionId, sessionId, title: 'local', type: 'local' }
-  }
 
   const [tabs, setTabs] = useState<Tab[]>(() => [makeSSHTab()])
   const [activeTab, setActiveTab] = useState<string>(() => tabs[0].id)
@@ -77,16 +73,6 @@ export const TerminalView = ({ host, sftpVisible, onToggleSftp, onSessionCountCh
     }
   }
 
-  const addLocalTab = () => {
-    const tab = makeLocalTab()
-    setTabs(prev => {
-      const next = [...prev, tab]
-      // Local tab doesn't count as SSH session
-      onSessionCountChange?.(sshCount(next))
-      return next
-    })
-    setActiveTab(tab.id)
-  }
 
   const addSSHTab = () => {
     const tab = makeSSHTab()
@@ -137,7 +123,6 @@ export const TerminalView = ({ host, sftpVisible, onToggleSftp, onSessionCountCh
   // These pure computations are needed as hook arguments — no hooks called here
   const activeTabObj = tabs.find(t => t.id === activeTab)
   const activeIsSSH = activeTabObj?.type === 'ssh'
-  const fontSize = termSettings.fontSize
 
   // Hooks that need the above values
   const { connections, snippets } = useConnections()

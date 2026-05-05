@@ -13,7 +13,6 @@ import { ConnectFlow } from './components/ConnectFlow'
 import { HomeScreen } from './components/HomeScreen'
 import { TweaksPanel, TweakSection, TweakSlider, TweakToggle, TweakRadio, useTweaks, TWEAK_DEFAULTS } from './ui/TweaksPanel'
 import { I } from './ui/icons'
-import { StatusDot } from './ui/primitives'
 import { useConnections } from './store/connections'
 import './index.css'
 

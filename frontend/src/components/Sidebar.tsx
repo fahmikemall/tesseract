@@ -6,7 +6,7 @@ import { OsIcon } from '../ui/OsIcon'
 
 const KeyIcon = () => <KeyRound size={14} strokeWidth={1.75} />
 const SettingsIcon = () => <Settings2 size={14} strokeWidth={1.75} />
-import { StatusDot, Button, IconBtn, SectionLabel, Kbd } from '../ui/primitives'
+import { Button, SectionLabel, Kbd } from '../ui/primitives'
 import { ContextMenu, type MenuItem } from '../ui/ContextMenu'
 import { EditConnectionModal } from './EditConnectionModal'
 import { HostKeyModal } from './HostKeyModal'
@@ -81,8 +81,8 @@ interface SidebarProps {
 
 export const Sidebar = ({ activeHostId, connectedHostId, onSelect, onNew, route, onRoute, collapsedGroups, setCollapsedGroups }: SidebarProps) => {
   const [q, setQ] = useState('')
-  const [keyCount, setKeyCount] = useState<number | null>(null)
-  const { connections, groups, systemUser, activeSessionCount, load, createGroup, renameGroup, deleteGroup } = useConnections()
+
+  const { connections, groups, load, createGroup, renameGroup, deleteGroup } = useConnections()
 
   // Context menu state
   const [ctxMenu, setCtxMenu] = useState<{ x: number; y: number; hostId: string } | null>(null)
@@ -113,11 +113,6 @@ export const Sidebar = ({ activeHostId, connectedHostId, onSelect, onNew, route,
     }
   }
 
-  useEffect(() => {
-    invoke<{ name: string }[]>('get_ssh_keys')
-      .then(keys => setKeyCount(keys.length))
-      .catch(() => setKeyCount(0))
-  }, [])
 
   const filtered = useMemo(() => {
     const t = q.trim().toLowerCase()

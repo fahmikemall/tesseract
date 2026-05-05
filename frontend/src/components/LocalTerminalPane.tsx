@@ -60,7 +60,6 @@ export function LocalTerminalPane({ sessionId, active, theme }: Props) {
       cursorBlink: true,
       cursorStyle: 'bar',
       scrollback: 10000,
-      copyOnSelect: true,
       rightClickSelectsWord: true,
     })
 

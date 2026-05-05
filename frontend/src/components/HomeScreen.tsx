@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { StatusDot } from '../ui/primitives'
 import { MarkWireframe, Wordmark } from '../ui/Logo'
 import { OsIcon } from '../ui/OsIcon'
 import { useConnections } from '../store/connections'
