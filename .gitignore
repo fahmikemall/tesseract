@@ -1,0 +1,22 @@
+# Logs
+*.log
+*.txt
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Rust
+target/
+frontend/src-tauri/target/
+
+# IDEs
+.vscode/
+.idea/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
